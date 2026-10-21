@@ -27,6 +27,24 @@ jobs:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
       - name: Test packaged desktop persistence and backup
         run: node scripts/smoke-runner.mjs release/win-unpacked/SkillVault.exe
+      - name: Test final portable executable
+        shell: pwsh
+        run: |
+          $version = (Get-Content package.json -Raw | ConvertFrom-Json).version
+          node scripts/smoke-runner.mjs "release/SkillVault-$version-Windows-x64-Portable.exe"
+          if ($LASTEXITCODE -ne 0) { throw 'Portable executable validation failed.' }
+      - name: Install setup and test installed application
+        shell: pwsh
+        run: |
+          $version = (Get-Content package.json -Raw | ConvertFrom-Json).version
+          $installer = (Resolve-Path "release/SkillVault-$version-Windows-x64-Setup.exe").Path
+          $installDir = Join-Path $env:RUNNER_TEMP 'SkillVault-install-check'
+          $process = Start-Process -FilePath $installer -ArgumentList "/S /currentuser /D=$installDir" -WindowStyle Hidden -Wait -PassThru
+          if ($process.ExitCode -ne 0) { throw "Installer exited with $($process.ExitCode)." }
+          $installedExe = Join-Path $installDir 'SkillVault.exe'
+          if (!(Test-Path -LiteralPath $installedExe)) { throw 'Installed executable is missing.' }
+          node scripts/smoke-runner.mjs $installedExe
+          if ($LASTEXITCODE -ne 0) { throw 'Installed application validation failed.' }
       - run: pnpm package:source
       - run: pnpm checksum
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -41,6 +59,7 @@ jobs:
         uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
         with:
           generate_release_notes: true
+          fail_on_unmatched_files: true
           files: |
             release/*.exe
             release/*-source.zip

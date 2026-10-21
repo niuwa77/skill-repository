@@ -10,6 +10,10 @@
 
 Windows 10/11 的 64 位电脑，下载发布页中的任意一种：
 
+**[打开最新版本下载页](https://github.com/niuwa77/skill-repository/releases/latest)** · [下载便携版 EXE](https://github.com/niuwa77/skill-repository/releases/latest/download/SkillVault-1.2.0-Windows-x64-Portable.exe) · [下载安装版 EXE](https://github.com/niuwa77/skill-repository/releases/latest/download/SkillVault-1.2.0-Windows-x64-Setup.exe)
+
+在发布页展开 **Assets** 下载以 `.exe` 结尾的文件。`Source code (zip)` 和 `Source code (tar.gz)` 是开发源码，普通使用者请选择下面的安装版或便携版。
+
 | 文件 | 用法 |
 | --- | --- |
 | `SkillVault-版本-Windows-x64-Portable.exe` | 便携版，双击直接打开，无需安装。 |
@@ -77,6 +81,8 @@ pnpm checksum
 
 - 推送 main 或提交 Pull Request：运行单元测试与源码检查。
 - 推送 `v*` 标签：构建 Windows 两种 EXE，验证已打包应用的保存及备份能力，生成源码包与校验和，并附加到 GitHub Release。
+
+发布前会分别运行未封装目录、最终便携 EXE、实际执行安装程序后得到的 EXE，检查登记保存、退出重开及 JSON 备份。测试数据使用独立目录；只有这些检查全部通过，才会上传发行文件。
 
 也可以在 Actions 页面手动运行 Windows release 工作流，先下载构建 artifact。手动构建不带版本标签时不会创建 Release。
 
