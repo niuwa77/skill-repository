@@ -5,7 +5,8 @@
 一个离线使用的个人 skill 链接工具箱。记下名称、链接和自己的使用心得，按用途快速找到下一次工作要用的工具。
 
 ![Skill仓库界面](previews/home-v1.1.jpg)
-<img width="1573" height="757" alt="1197824f45408f884e1466103210e20d" src="https://github.com/user-attachments/assets/3b556388-9bd7-453b-84cb-913806c45b0f" /
+
+<img width="1573" height="757" alt="1197824f45408f884e1466103210e20d" src="https://github.com/user-attachments/assets/5561b6a3-3427-4608-a516-f6c414a08eed" />
 
 
 ## 直接使用
