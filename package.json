@@ -1,0 +1,28 @@
+{
+  "name": "skill-vault",
+  "productName": "Skill仓库",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Skill仓库：个人专属的 skill 链接工具箱",
+  "main": "desktop/main.cjs",
+  "author": "niuwa77",
+  "license": "MIT",
+  "repository": {"type": "git", "url": "https://github.com/niuwa77/skill-repository.git"},
+  "engines": {"node": ">=22.12.0"},
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "start": "electron .",
+    "start:web": "node server.mjs",
+    "test": "node --test --test-isolation=none tests/*.test.mjs",
+    "check": "node scripts/check.mjs",
+    "build:win": "electron-builder --win --x64 --publish never",
+    "build:dir": "electron-builder --win --x64 --dir --publish never",
+    "package:source": "node scripts/package-source.mjs",
+    "checksum": "node scripts/checksums.mjs"
+  },
+  "devDependencies": {
+    "electron": "44.9.1",
+    "electron-builder": "26.15.3"
+  }
+}

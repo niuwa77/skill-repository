@@ -1,0 +1,17 @@
+.taste-skill/inspect*/
+.qa/
+*.log
+node_modules/
+release/
+open-source/
+.cache/
+test-results/
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.pem
+*.key
+Thumbs.db
+.DS_Store

@@ -1,0 +1,38 @@
+appId: io.github.niuwa77.skillvault
+productName: Skill仓库
+copyright: Copyright © 2026 niuwa77 and contributors
+asar: true
+directories:
+  output: release
+  buildResources: assets
+files:
+  - desktop/**/*
+  - dist/**/*
+  - assets/icon.png
+  - assets/icon.ico
+  - LICENSE
+  - package.json
+win:
+  executableName: SkillVault
+  icon: assets/icon.ico
+  requestedExecutionLevel: asInvoker
+  target:
+    - target: portable
+      arch: [x64]
+    - target: nsis
+      arch: [x64]
+nsis:
+  artifactName: SkillVault-${version}-Windows-x64-Setup.${ext}
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Skill仓库
+  deleteAppDataOnUninstall: false
+  installerLanguages: [zh_CN, en_US]
+  language: '2052'
+portable:
+  artifactName: SkillVault-${version}-Windows-x64-Portable.${ext}
+  requestExecutionLevel: user
+publish: null
